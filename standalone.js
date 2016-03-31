@@ -4320,25 +4320,46 @@ var Select = _react2['default'].createClass({
 	},
 
 	focusNextOption: function focusNextOption() {
-		var focusedOptionIndex = this.state.focusedOptionIndex + 1;
-
-		if (focusedOptionIndex >= this._visibleOptions.length) {
-			focusedOptionIndex = 0;
-		}
-
-		this.setState({
-			focusedOptionIndex: focusedOptionIndex
-		});
+		this.focusAdjacentOption('next');
 	},
 
 	focusPreviousOption: function focusPreviousOption() {
-		var focusedOptionIndex = Math.min(this.state.focusedOptionIndex - 1, this._visibleOptions.length - 1);
+		this.focusAdjacentOption('previous');
+	},
 
-		if (focusedOptionIndex < 0) {
-			focusedOptionIndex = this._visibleOptions.length - 1;
+	focusAdjacentOption: function focusAdjacentOption(dir) {
+		var options = this._visibleOptions.filter(function (i) {
+			return !i.disabled;
+		});
+		this._scrollToFocusedOptionOnUpdate = true;
+		if (!this.state.isOpen) {
+			this.setState({
+				isOpen: true,
+				inputValue: '',
+				focusedOption: this._focusedOption || options[dir === 'next' ? 0 : options.length - 1]
+			});
+			return;
 		}
-
+		if (!options.length) return;
+		var focusedOptionIndex = -1;
+		for (var i = 0; i < options.length; i++) {
+			if (this._focusedOption === options[i]) {
+				focusedOptionIndex = i;
+				break;
+			}
+		}
+		var focusedOption = options[0];
+		if (dir === 'next' && focusedOptionIndex > -1 && focusedOptionIndex < options.length - 1) {
+			focusedOption = options[focusedOptionIndex + 1];
+		} else if (dir === 'previous') {
+			if (focusedOptionIndex > 0) {
+				focusedOption = options[focusedOptionIndex - 1];
+			} else {
+				focusedOption = options[options.length - 1];
+			}
+		}
 		this.setState({
+			focusedOption: focusedOption,
 			focusedOptionIndex: focusedOptionIndex
 		});
 	},
