@@ -1034,6 +1034,9 @@ var Select = _react2['default'].createClass({
 	renderMenu: function renderMenu(options, valueArray, focusedOption) {
 		var _this4 = this;
 
+		console.log('renderMenu()');
+		console.log('• options:', options);
+		console.log('• renderMenu:', this.props.renderMenu);
 		if (options && options.length) {
 			if (this.props.renderMenu) {
 				return this.props.renderMenu({
