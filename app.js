@@ -199,7 +199,7 @@ var CitiesField = _react2['default'].createClass({
 				labelKey: 'name',
 				valueKey: 'name',
 				menuStyle: { overflow: 'hidden' },
-				renderMenu: this.renderMenu
+				menuRenderer: this.renderMenu
 			})
 		);
 	}
