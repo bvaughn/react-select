@@ -611,6 +611,7 @@ AutoSizer.defaultProps = {
   onResize: function onResize() {}
 };
 exports.default = AutoSizer;
+
 },{"../vendor/detectElementResize":29,"react":undefined,"react-addons-shallow-compare":7}],11:[function(require,module,exports){
 'use strict';
 
@@ -2635,6 +2636,7 @@ function updateScrollIndexHelper(_ref8) {
       }
     }
 }
+
 },{}],21:[function(require,module,exports){
 'use strict';
 
@@ -4500,11 +4502,11 @@ var Select = _react2['default'].createClass({
 	},
 
 	renderNoResults: function renderNoResults() {
-		return _react2['default'].createElement(
+		return this.props.noResultsText ? _react2['default'].createElement(
 			'div',
 			{ className: 'Select-noresults' },
 			this.props.noResultsText
-		);
+		) : null;
 	},
 
 	renderOption: function renderOption(index) {
@@ -4600,7 +4602,7 @@ var Select = _react2['default'].createClass({
 			'has-value': valueArray.length
 		});
 
-		var optionsHeight = Math.min(MAX_OPTIONS_HEIGHT, options.length * OPTION_HEIGHT);
+		var optionsHeight = Math.max(Math.min(MAX_OPTIONS_HEIGHT, options.length * OPTION_HEIGHT), OPTION_HEIGHT);
 
 		return _react2['default'].createElement(
 			'div',
