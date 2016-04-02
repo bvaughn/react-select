@@ -77,16 +77,10 @@ var DATA = require('../data/cities');
 
 var CitiesField = _react2['default'].createClass({
 	displayName: 'CitiesField',
-	updateValue: function updateValue(newValue) {
-		this.setState({
-			selectValue: newValue
-		});
-	},
 	getInitialState: function getInitialState() {
 		return {};
 	},
 	updateValue: function updateValue(newValue) {
-		console.log('State changed to ' + newValue);
 		this.setState({
 			selectValue: newValue
 		});
