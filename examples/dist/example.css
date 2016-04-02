@@ -103,6 +103,7 @@
   vertical-align: middle;
 }
 .Select-input > input {
+  width: 100%;
   background: none transparent;
   border: 0 none;
   box-shadow: none;
@@ -508,4 +509,7 @@ h6,
   font-size: .85em;
   margin: 15px 0;
   color: #666;
+}
+.virtual-scroll {
+  z-index: 1;
 }
